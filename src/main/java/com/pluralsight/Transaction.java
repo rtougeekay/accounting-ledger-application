@@ -36,5 +36,9 @@ public class Transaction {
         return amount;
     }
 
+    public String toCsvLine() {
+        return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
+    }
+
 
 }

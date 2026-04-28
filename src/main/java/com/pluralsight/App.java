@@ -1,5 +1,8 @@
 package com.pluralsight;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class App {
@@ -43,9 +46,55 @@ public class App {
     private static void showLedger() {
     }
 
-    private static void addTransaction(boolean b) {
 
+
+    public static void addTransaction(boolean isDeposit) {
+        try {
+            System.out.print("Enter description: ");
+            String description = App.input.nextLine().trim();
+
+            System.out.print("Enter vendor: ");
+            String vendor = App.input.nextLine().trim();
+
+            System.out.print("Enter amount: ");
+            double amount = Double.parseDouble(App.input.nextLine().trim());
+
+            if (!isDeposit) {
+                amount = amount * -1;
+            }
+
+            String date = java.time.LocalDate.now().toString();
+            String time = java.time.LocalTime.now().withNano(0).toString();
+
+            Transaction transaction = new Transaction(date, time, description, vendor, amount);
+
+            FileWriter fileWriter = new FileWriter(fileName, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write(transaction.toCsvLine());
+            bufferedWriter.newLine();
+
+            bufferedWriter.close();
+
+            System.out.println("Transaction saved!");
+        } catch (Exception e) {
+            System.out.println("Something went wrong. Transaction was not saved.");
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
