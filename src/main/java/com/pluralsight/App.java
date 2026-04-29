@@ -152,8 +152,6 @@ public class App {
         }
     }
 
-    private static void showReports() {
-    }
 
     private static void displayTransactions() {
     }
@@ -169,6 +167,63 @@ public class App {
             } else if (type.equals("DEPOSITS") && transaction.getAmount() > 0) {
                 System.out.println(transaction);
             } else if (type.equals("PAYMENTS") && transaction.getAmount() < 0) {
+                System.out.println(transaction);
+            }
+        }
+    }
+
+    public static void showReports() {
+        boolean inReports = true;
+
+        while (inReports) {
+            System.out.println();
+            System.out.println("=== Reports ===");
+            System.out.println("1 - Month To Date");
+            System.out.println("2 - Previous Month");
+            System.out.println("3 - Year To Date");
+            System.out.println("4 - Previous Year");
+            System.out.println("5 - Search by Vendor");
+            System.out.println("0 - Back");
+            System.out.print("Choose an option: ");
+
+            String choice = input.nextLine().trim();
+
+            switch (choice) {
+                case "1":
+                    System.out.println("Month To Date report coming next.");
+                    break;
+                case "2":
+                    System.out.println("Previous Month report coming next.");
+                    break;
+                case "3":
+                    System.out.println("Year To Date report coming next.");
+                    break;
+                case "4":
+                    System.out.println("Previous Year report coming next.");
+                    break;
+                case "5":
+                    searchByVendor();
+                    break;
+                case "0":
+                    inReports = false;
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    break;
+            }
+        }
+    }
+
+    private static void searchByVendor() {
+    }
+    {
+        System.out.print("Enter vendor name: ");
+        String vendorSearch = input.nextLine().trim().toLowerCase();
+
+        ArrayList<Transaction> transactions = loadTransactions();
+
+        for (Transaction transaction : transactions) {
+            if (transaction.getVendor().toLowerCase().contains(vendorSearch)) {
                 System.out.println(transaction);
             }
         }
