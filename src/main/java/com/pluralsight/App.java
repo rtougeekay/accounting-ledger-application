@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class App {
     static Scanner input = new Scanner(System.in);
     static String fileName = "transactions.csv";
+
     public static void main(String[] args) {
 
         boolean running = true;
@@ -44,10 +45,6 @@ public class App {
             }
         }
     }
-
-    private static void showLedger() {
-    }
-
 
 
     public static void addTransaction(boolean isDeposit) {
@@ -113,22 +110,53 @@ public class App {
         }
 
         return transactions;
+
+
     }
 
+    public static void showLedger() {
+        boolean inLedger = true;
 
+        while (inLedger) {
+            System.out.println();
+            System.out.println("=== Ledger ===");
+            System.out.println("A - All");
+            System.out.println("D - Deposits");
+            System.out.println("P - Payments");
+            System.out.println("R - Reports");
+            System.out.println("H - Home");
+            System.out.print("Choose an option: ");
 
+            String choice = input.nextLine().trim().toUpperCase();
 
+            switch (choice) {
+                case "A":
+                    displayTransactions();
+                    break;
+                case "D":
+                    displayTransactions();
+                    break;
+                case "P":
+                    displayTransactions();
+                    break;
+                case "R":
+                    showReports();
+                    break;
+                case "H":
+                    inLedger = false;
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    break;
+            }
+        }
+    }
 
+    private static void showReports() {
+    }
 
-
-
-
-
-
-
-
-
-
+    private static void displayTransactions() {
+    }
 
 }
 
