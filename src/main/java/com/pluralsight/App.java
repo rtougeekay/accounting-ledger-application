@@ -158,6 +158,21 @@ public class App {
     private static void displayTransactions() {
     }
 
+    public static void displayTransactions(String type) {
+        ArrayList<Transaction> transactions = loadTransactions();
+
+        for (int i = transactions.size() - 1; i >= 0; i--) {
+            Transaction transaction = transactions.get(i);
+
+            if (type.equals("ALL")) {
+                System.out.println(transaction);
+            } else if (type.equals("DEPOSITS") && transaction.getAmount() > 0) {
+                System.out.println(transaction);
+            } else if (type.equals("PAYMENTS") && transaction.getAmount() < 0) {
+                System.out.println(transaction);
+            }
+        }
+    }
 }
 
 
