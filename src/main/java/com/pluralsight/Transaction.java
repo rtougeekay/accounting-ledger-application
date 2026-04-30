@@ -40,6 +40,9 @@ public class Transaction {
     public String toCsvLine() {
         return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
     }
-
+    @Override
+    public String toString() {
+        return date + " | " + time + " | " + description + " | " + vendor + " | $" + amount;
+    }
 
 }
